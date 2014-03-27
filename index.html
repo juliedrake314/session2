@@ -46,6 +46,16 @@ $(document).bind('pageinit', function() {
   $.ajaxSetup ({
 	cache: false
   });
+  
+  $( "#button2" ).bind( "click", function(event, ui) {
+	alert("Posting a new quote");
+	var jsonUrl = "http://localhost:3001/quote";
+	var newQuote = { "author" : "foo", "text" : "some text" };
+	$.post(jsonUrl,newQuote, function(data) {
+  	alert("Added " + data.author + " " + data.text);
+	}, 'json');
+  });
+
 
   $( "#button1" ).bind( "click", function(event, ui) {
 	var q = $("#text1").val();
